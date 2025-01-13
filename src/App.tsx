@@ -1,11 +1,11 @@
-import { TaskList } from "./components/task-list.tsx";
+import { TaskList } from "./components/task-list";
 
 export function App() {
   const taskItems = [
     { text: "Learn HTML", isCompleted: true },
     { text: "Learn CSS", isCompleted: true },
     { text: "Learn JavaScript", isCompleted: true },
-    { text: "Learn Reach", isCompleted: false },
+    { text: "Learn React", isCompleted: false },
   ];
 
   return (

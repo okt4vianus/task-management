@@ -1,5 +1,5 @@
 import { type TaskItem } from "../types/task";
-import { TaskListItems } from "./task-list-items";
+import { TaskListItem } from "./task-list-item";
 
 type TaskItemProps = {
   taskItems: TaskItem[];
@@ -10,7 +10,7 @@ export function TaskList({ taskItems }: TaskItemProps) {
     <ul>
       {taskItems.map((taskItem, index) => {
         return (
-          <TaskListItems
+          <TaskListItem
             key={index}
             text={taskItem.text}
             isCompleted={taskItem.isCompleted}

@@ -1,4 +1,5 @@
 import { Profile } from "./profile";
+
 export function Gallery() {
   return (
     <div>
