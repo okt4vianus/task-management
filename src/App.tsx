@@ -1,16 +1,17 @@
-import { add } from "./lib/math.ts";
+import { TaskList } from "./components/task-list.tsx";
 
 export function App() {
-  const personAge1 = 20;
-  const personAge2 = 30;
-  const personAgeSum = add(personAge1, personAge2);
+  const taskItems = [
+    { text: "Learn HTML", isCompleted: true },
+    { text: "Learn CSS", isCompleted: true },
+    { text: "Learn JavaScript", isCompleted: true },
+    { text: "Learn Reach", isCompleted: false },
+  ];
 
   return (
     <div>
-      <h2>Sum of 2 numbers</h2>
-      <h2>
-        {personAge1} + {personAge2} = {personAgeSum}
-      </h2>
+      <h1>Task Management</h1>
+      <TaskList taskItems={taskItems} />
     </div>
   );
 }
