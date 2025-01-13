@@ -1,15 +1,17 @@
-import { type TaskItem } from "../types/task";
+import { TaskItem } from "../types/task";
 
-type TaskItemsProps = TaskItem;
+type TaskItemsProps = {
+  taskItem: TaskItem;
+};
 
-export function TaskListItem({ text, isCompleted }: TaskItemsProps) {
-  if (isCompleted) {
+export function TaskListItem({ taskItem }: TaskItemsProps) {
+  if (taskItem.isCompleted) {
     return (
       <li>
-        <s>{text}</s>
+        <s>{taskItem.text}</s>
       </li>
     );
   }
 
-  return <li>{text}</li>;
+  return <li>{taskItem.text}</li>;
 }

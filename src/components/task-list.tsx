@@ -8,14 +8,8 @@ type TaskItemProps = {
 export function TaskList({ taskItems }: TaskItemProps) {
   return (
     <ul>
-      {taskItems.map((taskItem, index) => {
-        return (
-          <TaskListItem
-            key={index}
-            text={taskItem.text}
-            isCompleted={taskItem.isCompleted}
-          />
-        );
+      {taskItems.map((taskItem) => {
+        return <TaskListItem key={taskItem.id} taskItem={taskItem} />;
       })}
     </ul>
   );
