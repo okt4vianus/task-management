@@ -1,17 +1,25 @@
-import { TaskItem } from "../types/task";
+import { Task } from "../types/task";
 
 type TaskItemsProps = {
-  taskItem: TaskItem;
+  taskItem: Task;
 };
 
 export function TaskListItem({ taskItem }: TaskItemsProps) {
   if (taskItem.isCompleted) {
     return (
-      <li>
-        <s>{taskItem.text}</s>
-      </li>
+      <div className="space-x-2">
+        <span>☑</span>
+        <span>
+          <s>{taskItem.text}</s>
+        </span>
+      </div>
     );
   }
 
-  return <li>{taskItem.text}</li>;
+  return (
+    <div className="space-x-2">
+      <span>☐</span>
+      <span>{taskItem.text};</span>;
+    </div>
+  );
 }

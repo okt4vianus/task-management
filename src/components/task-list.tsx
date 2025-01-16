@@ -1,13 +1,13 @@
-import { type TaskItem } from "../types/task";
+import { type Task } from "../types/task";
 import { TaskListItem } from "./task-list-item";
 
 type TaskItemProps = {
-  taskItems: TaskItem[];
+  taskItems: Task[];
 };
 
 export function TaskList({ taskItems }: TaskItemProps) {
   return (
-    <ul>
+    <ul className="space-y-1">
       {taskItems.map((taskItem) => {
         return <TaskListItem key={taskItem.id} taskItem={taskItem} />;
       })}
