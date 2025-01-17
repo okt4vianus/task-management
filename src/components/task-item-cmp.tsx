@@ -12,11 +12,11 @@ export function TaskItemCmp({ task }: { task: TaskType }) {
       <label className="flex-1" htmlFor={`${task.id}`}>
         {task.desc}
       </label>
-      <span className="flex-1 text-left text-gray-500">
+      <span className="flex-1 text-left text-sm text-gray-500">
         {task.dueDate.toDateString()}
       </span>
       <span
-        className={`flex-1 text-left font-semibold ${
+        className={`flex-1 text-left text-sm font-semibold ${
           task.isCompleted ? "text-green-500" : "text-red-500"
         }`}
       >
