@@ -1,5 +1,3 @@
-// import { TaskList } from "./components/task-list";
-// import { Task } from "./types/task";
 import { AddButton } from "./components/button";
 import { TaskListCmp } from "./components/task-list-cmp";
 import { useState } from "react";
@@ -30,6 +28,7 @@ const initialTasks = [
     isCompleted: false,
   },
 ];
+
 export function App() {
   const [taskItems, setTaskItems] = useState(initialTasks);
 
@@ -63,7 +62,7 @@ export function App() {
               Add Task
             </button>
           </div>
-          <TaskListCmp tasks={initialTasks} />
+          <TaskListCmp tasks={taskItems} />
         </div>
       </div>
       <div className="flex justify-center text-xl">
