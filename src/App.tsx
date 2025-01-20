@@ -2,34 +2,49 @@
 // import { Task } from "./types/task";
 import { AddButton } from "./components/button";
 import { TaskListCmp } from "./components/task-list-cmp";
+import { useState } from "react";
 
+const initialTasks = [
+  {
+    id: 1,
+    desc: "Learn HTML",
+    dueDate: new Date("01 November 2024"),
+    isCompleted: true,
+  },
+  {
+    id: 2,
+    desc: "Learn CSS",
+    dueDate: new Date("01 December 2024"),
+    isCompleted: true,
+  },
+  {
+    id: 3,
+    desc: "Learn JavaScript",
+    dueDate: new Date("01 Januari 2025"),
+    isCompleted: true,
+  },
+  {
+    id: 4,
+    desc: "Learn React",
+    dueDate: new Date("1 Feb 2025"),
+    isCompleted: false,
+  },
+];
 export function App() {
-  const tasks = [
-    {
-      id: 1,
-      desc: "Learn HTML",
-      dueDate: new Date("01 November 2024"),
-      isCompleted: true,
-    },
-    {
-      id: 2,
-      desc: "Learn CSS",
-      dueDate: new Date("01 December 2024"),
-      isCompleted: true,
-    },
-    {
-      id: 3,
-      desc: "Learn JavaScript",
-      dueDate: new Date("01 Januari 2025"),
-      isCompleted: true,
-    },
-    {
-      id: 4,
-      desc: "Learn React",
-      dueDate: new Date("1 Feb 2025"),
+  const [taskItems, setTaskItems] = useState(initialTasks);
+
+  function addTaskItem() {
+    const newTaskItem = {
+      id: taskItems[taskItems.length - 1].id + 1,
+      desc: "Learn new thing",
+      dueDate: new Date(),
       isCompleted: false,
-    },
-  ];
+    };
+
+    const updatedTaskItems = [...taskItems, newTaskItem];
+    console.log("Updated Tasks:", updatedTaskItems);
+    setTaskItems(updatedTaskItems);
+  }
 
   return (
     <div>
@@ -40,7 +55,15 @@ export function App() {
               Task Management
             </h1>
           </header>
-          <TaskListCmp tasks={tasks} />
+          <div>
+            <button
+              onClick={addTaskItem}
+              className="rounded bg-blue-700 text-white"
+            >
+              Add Task
+            </button>
+          </div>
+          <TaskListCmp tasks={initialTasks} />
         </div>
       </div>
       <div className="flex justify-center text-xl">
