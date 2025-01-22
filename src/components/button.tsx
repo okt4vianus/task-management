@@ -2,22 +2,17 @@ import { useState } from "react";
 
 export function AddButton() {
   const [count, setCount] = useState(0);
-  const [name, setName] = useState("0");
 
   function handleIncrement() {
     setCount(count + 1);
 
-    console.log(count);
-
-    setName(count);
+    console.log(setCount(count));
   }
 
   function handleDecrease() {
     setCount(count - 1);
 
-    console.log(count);
-
-    setName(count);
+    console.log(setCount(count));
   }
 
   return (

@@ -62,6 +62,7 @@ export function App() {
               Add Task
             </button>
           </div>
+          <p>Task: {taskItems.length}</p>
           <TaskListCmp tasks={taskItems} />
         </div>
       </div>
