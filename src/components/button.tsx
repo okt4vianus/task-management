@@ -5,14 +5,12 @@ export function AddButton() {
 
   function handleIncrement() {
     setCount(count + 1);
-
-    console.log(setCount(count));
+    console.log(count + 1);
   }
 
   function handleDecrease() {
     setCount(count - 1);
-
-    console.log(setCount(count));
+    console.log(count - 1);
   }
 
   return (
@@ -31,7 +29,6 @@ export function AddButton() {
         - sub
       </button>
       <p>Counter: {count}</p>
-      <p>{name}</p>
     </div>
   );
 }
