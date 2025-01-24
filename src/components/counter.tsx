@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-export function AddButton() {
+export function Counter() {
   const [count, setCount] = useState(0);
 
-  function handleIncrement() {
+  function handleIncrease() {
     setCount(count + 1);
     console.log(count + 1);
   }
@@ -14,19 +14,18 @@ export function AddButton() {
   }
 
   return (
-    <div>
+    <div className="space-x-2">
       <button
-        onClick={handleIncrement}
+        onClick={handleIncrease}
         className="rounded bg-blue-700 text-white"
       >
-        + add
+        + Increase
       </button>
-      <span> </span>
       <button
         onClick={handleDecrease}
         className="rounded bg-red-700 text-white"
       >
-        - sub
+        - Decrease
       </button>
       <p>Counter: {count}</p>
     </div>

@@ -1,48 +1,40 @@
-import { AddButton } from "./components/button";
-import { TaskListCmp } from "./components/task-list-cmp";
 import { useState } from "react";
-
-const initialTasks = [
-  {
-    id: 1,
-    desc: "Learn HTML",
-    dueDate: new Date("01 November 2024"),
-    isCompleted: true,
-  },
-  {
-    id: 2,
-    desc: "Learn CSS",
-    dueDate: new Date("01 December 2024"),
-    isCompleted: true,
-  },
-  {
-    id: 3,
-    desc: "Learn JavaScript",
-    dueDate: new Date("01 Januari 2025"),
-    isCompleted: true,
-  },
-  {
-    id: 4,
-    desc: "Learn React",
-    dueDate: new Date("1 Feb 2025"),
-    isCompleted: false,
-  },
-];
+import { initialTasks } from "@/data/initialtask";
+import { TaskList } from "@/components/task-list";
+import { Counter } from "@/components/counter";
+import { Label } from "@radix-ui/react-label";
+// import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 
 export function App() {
   const [taskItems, setTaskItems] = useState(initialTasks);
 
-  function addTaskItem() {
+  function addTaskItem(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+
     const newTaskItem = {
-      id: taskItems[taskItems.length - 1].id + 1,
-      desc: "Learn new thing",
-      dueDate: new Date(),
+      // id: taskItems[taskItems.length - 1].id + 1,
+      id: taskItems.length > 0 ? taskItems[taskItems.length - 1].id + 1 : 1,
+      description: String(formData.get("text")),
+      // dueDate: new Date(),
+      dueDate: new Date(String(formData.get("date"))),
       isCompleted: false,
     };
 
     const updatedTaskItems = [...taskItems, newTaskItem];
-    console.log("Updated Tasks:", updatedTaskItems);
     setTaskItems(updatedTaskItems);
+    console.log("Updated Tasks:", updatedTaskItems);
+
+    // Reset the form inputs
+    event.currentTarget.reset();
+  }
+
+  function delTaskItem(taskId: number) {
+    if (taskId === undefined) return;
+    const updatedTaskItems = taskItems.filter((task) => task.id !== taskId);
+    setTaskItems(updatedTaskItems);
+    console.log("Deleted Task ID:", taskId);
   }
 
   return (
@@ -54,20 +46,63 @@ export function App() {
               Task Management
             </h1>
           </header>
-          <div>
-            <button
-              onClick={addTaskItem}
-              className="rounded bg-blue-700 text-white"
-            >
-              Add Task
-            </button>
+          <div className="flex justify-between">
+            <form onSubmit={addTaskItem}>
+              <div>
+                <div className="flex items-center space-x-3">
+                  <Label htmlFor="text" className="font-medium">
+                    Description:
+                  </Label>
+                  <Input
+                    id="text"
+                    name="text"
+                    type="text"
+                    placeholder="Learn something"
+                    required
+                    className="flex-1"
+                  />
+                </div>
+                <div className="mt-3 flex items-center space-x-3">
+                  <Label htmlFor="date" className="font-medium">
+                    Due Date:
+                  </Label>
+                  <Input
+                    id="date"
+                    name="date"
+                    type="date"
+                    required
+                    defaultValue={new Date().toISOString().split("T")[0]}
+                    className="flex-1"
+                  />
+                </div>
+                <button
+                  // onClick={addTaskItem}
+                  type="submit"
+                  className="rounded bg-blue-700 text-white"
+                >
+                  Add Task
+                </button>
+                <button
+                  onClick={() =>
+                    delTaskItem(taskItems[taskItems.length - 1]?.id)
+                  }
+                  className="rounded bg-red-700 text-white"
+                  disabled={taskItems.length === 0}
+                >
+                  Del Task
+                </button>
+                <p className="bg-yellow-100 text-black">
+                  Task: {taskItems.length} items
+                </p>
+              </div>
+            </form>
           </div>
-          <p>Task: {taskItems.length}</p>
-          <TaskListCmp tasks={taskItems} />
+
+          <TaskList tasks={taskItems} delTask={delTaskItem} />
         </div>
       </div>
       <div className="flex justify-center text-xl">
-        <AddButton />
+        <Counter />
       </div>
     </div>
   );

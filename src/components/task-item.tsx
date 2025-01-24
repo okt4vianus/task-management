@@ -1,19 +1,25 @@
 import { TaskType } from "../types/task";
 
-export function TaskItemCmp({ task }: { task: TaskType }) {
+export function TaskItem({
+  task,
+  delTask,
+}: {
+  task: TaskType;
+  delTask: (id: number) => void;
+}) {
   return (
     <li className="flex items-center justify-between border-b border-gray-300 py-2">
       <input
         className="mr-2"
         type="checkbox"
         id={`${task.id}`}
-        checked={task.isCompleted}
+        defaultChecked={task.isCompleted}
       />
       <label className="flex-1" htmlFor={`${task.id}`}>
-        {task.desc}
+        {task.description}
       </label>
       <span className="flex-1 text-left text-sm text-gray-500">
-        {task.dueDate.toDateString()}
+        {new Date(task.dueDate).toDateString()}
       </span>
       <span
         className={`flex-1 text-left text-sm font-semibold ${
@@ -21,6 +27,12 @@ export function TaskItemCmp({ task }: { task: TaskType }) {
         }`}
       >
         {task.isCompleted ? "Done" : "In progress"}
+      </span>
+      <span
+        onClick={() => delTask(task.id)}
+        className="cursor-pointer rounded bg-red-500 text-white"
+      >
+        ♲ Del
       </span>
     </li>
   );
