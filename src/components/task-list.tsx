@@ -3,10 +3,15 @@ import { TaskItem } from "./task-item";
 
 type TaskListProps = {
   tasks: TaskType[];
-  delTask: (id: number) => void;
+  DeleteTask: (taskId: number) => void;
+  ToogleTaskCompleted: (taskId: number) => void;
 };
 
-export function TaskList({ tasks, delTask }: TaskListProps) {
+export function TaskList({
+  tasks,
+  DeleteTask,
+  ToogleTaskCompleted,
+}: TaskListProps) {
   return (
     <div className="rounded-lg bg-yellow-100 p-2 shadow-md">
       <div className="flex border-b border-gray-300 py-2 font-bold">
@@ -14,7 +19,12 @@ export function TaskList({ tasks, delTask }: TaskListProps) {
       </div>
       <ul className="space-y-2">
         {tasks.map((task) => (
-          <TaskItem key={task.id} task={task} delTask={delTask} />
+          <TaskItem
+            key={task.id}
+            task={task}
+            DeleteTask={DeleteTask}
+            ToogleTaskCompleted={ToogleTaskCompleted}
+          />
         ))}
       </ul>
     </div>
