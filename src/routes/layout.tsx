@@ -11,6 +11,9 @@ export function LayoutRoute() {
               <NavLinkCustom to="/">App</NavLinkCustom>
             </li>
             <li>
+              <NavLinkCustom to="/tasks">Task Detail</NavLinkCustom>
+            </li>
+            <li>
               <NavLinkCustom to="/about">About</NavLinkCustom>
             </li>
           </ul>

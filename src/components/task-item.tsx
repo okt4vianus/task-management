@@ -1,7 +1,8 @@
 import { Trash2 } from "lucide-react";
-import { TaskType } from "../types/task";
-import { Button } from "./ui/button";
-import { Checkbox } from "./ui/checkbox";
+import { TaskType } from "@/types/task";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Link } from "react-router";
 
 type TaskItemProps = {
   task: TaskType;
@@ -41,16 +42,20 @@ export function TaskItem({
           task.isCompleted ? "text-green-500" : "text-red-500"
         }`}
       >
-        {task.isCompleted ? "Done" : "In progress"}
+        {task.isCompleted ? "Done" : "Undone"}
       </span>
-      <Button
-        size="sm"
-        onClick={() => DeleteTask(task.id)}
-        variant="destructive"
-        // className="cursor-pointer rounded bg-red-500 text-white"
-      >
-        <Trash2 /> Delete
-      </Button>
+      <div className="inline-flex items-center gap-2">
+        <Button asChild size="sm" variant="link">
+          <Link to={`/tasks/${task.id}`}>View</Link>
+        </Button>
+        <Button
+          size="sm"
+          onClick={() => DeleteTask(task.id)}
+          variant="destructive"
+        >
+          <Trash2 /> Delete
+        </Button>
+      </div>
     </li>
   );
 }
