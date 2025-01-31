@@ -6,14 +6,14 @@ import { Link } from "react-router";
 
 type TaskItemProps = {
   task: TaskType;
-  DeleteTask: (taskId: number) => void;
-  ToogleTaskCompleted: (taskId: number) => void;
+  deleteTaskItem: (taskId: number) => void;
+  toggleTaskCompleted: (taskId: number) => void;
 };
 
 export function TaskItem({
   task,
-  DeleteTask,
-  ToogleTaskCompleted,
+  deleteTaskItem,
+  toggleTaskCompleted,
 }: TaskItemProps) {
   return (
     <li className="flex items-center justify-between border-b border-gray-300 py-2">
@@ -21,16 +21,8 @@ export function TaskItem({
         id="isCompleted"
         name="isCompleted"
         defaultChecked={task.isCompleted}
-        onClick={() => ToogleTaskCompleted(task.id)}
+        onClick={() => toggleTaskCompleted(task.id)}
       />
-      {/* <input
-        className="mr-2"
-        type="checkbox"
-        id={`${task.id}`}
-        defaultChecked={task.isCompleted}
-        onClick={() => ToogleTaskCompleted(task.id)}
-      /> */}
-
       <label className="flex-1" htmlFor={`${task.id}`}>
         {task.description}
       </label>
@@ -44,13 +36,14 @@ export function TaskItem({
       >
         {task.isCompleted ? "Done" : "Undone"}
       </span>
+
       <div className="inline-flex items-center gap-2">
-        <Button asChild size="sm" variant="link">
+        <Button asChild size="sm">
           <Link to={`/tasks/${task.id}`}>View</Link>
         </Button>
         <Button
           size="sm"
-          onClick={() => DeleteTask(task.id)}
+          onClick={() => deleteTaskItem(task.id)}
           variant="destructive"
         >
           <Trash2 /> Delete

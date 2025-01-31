@@ -2,11 +2,8 @@ import { useState } from "react";
 
 import { initialTasks } from "@/data/initialtask";
 import { TaskList } from "@/components/task-list";
-// import { Label } from "@radix-ui/react-label";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-// import { TaskItem } from "./components/task-item";
-// import { Link, NavLink } from "react-router";
 
 export function App() {
   const [taskItems, setTaskItems] = useState(initialTasks);
@@ -30,15 +27,12 @@ export function App() {
     event.currentTarget.reset();
   }
 
-  function DeleteTaskItem(taskId: number) {
-    // if (taskId === undefined) return;
+  function deleteTaskItem(taskId: number) {
     const updatedTaskItems = taskItems.filter((task) => task.id !== taskId);
     setTaskItems(updatedTaskItems);
   }
 
-  function ToogleTaskCompleted(taskId: number) {
-    console.log({ taskId });
-
+  function toggleTaskCompleted(taskId: number) {
     const updatedTaskItems = taskItems.map((task) => {
       if (task.id === taskId) {
         return { ...task, isCompleted: !task.isCompleted };
@@ -96,7 +90,7 @@ export function App() {
                 <button
                   type="button"
                   onClick={() =>
-                    DeleteTaskItem(taskItems[taskItems.length - 1]?.id)
+                    deleteTaskItem(taskItems[taskItems.length - 1]?.id)
                   }
                   className="rounded bg-red-700 text-white"
                   disabled={taskItems.length === 0}
@@ -111,9 +105,9 @@ export function App() {
           </div>
 
           <TaskList
-            tasks={taskItems}
-            DeleteTask={DeleteTaskItem}
-            ToogleTaskCompleted={ToogleTaskCompleted}
+            taskItems={taskItems}
+            deleteTaskItem={deleteTaskItem}
+            toggleTaskCompleted={toggleTaskCompleted}
           />
         </div>
       </div>
