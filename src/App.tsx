@@ -2,11 +2,8 @@ import { useEffect, useState } from "react";
 import { TaskList } from "@/components/task-list";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-<<<<<<< HEAD
 import { getTaskItemsStorage, setTaskItemsStorage } from "@/modules/task";
-import { TaskType } from "@/types/task";
-=======
->>>>>>> 3ba9fcae5fddb05c7d8c204e1c851b6f20a8ac93
+import { TaskType } from "./types/task";
 
 export function App() {
   const [taskItems, setTaskItems] = useState(getTaskItemsStorage());
@@ -34,24 +31,15 @@ export function App() {
     event.currentTarget.reset();
   }
 
-<<<<<<< HEAD
   function deleteTaskItemItem(taskId: number) {
     const updatedTaskItems = taskItems.filter(
       (task: TaskType) => task.id !== taskId,
     );
-=======
-  function deleteTaskItem(taskId: number) {
-    const updatedTaskItems = taskItems.filter((task) => task.id !== taskId);
->>>>>>> 3ba9fcae5fddb05c7d8c204e1c851b6f20a8ac93
     setTaskItems(updatedTaskItems);
   }
 
   function toggleTaskCompleted(taskId: number) {
-<<<<<<< HEAD
     const updatedTaskItems = taskItems.map((task: TaskType) => {
-=======
-    const updatedTaskItems = taskItems.map((task) => {
->>>>>>> 3ba9fcae5fddb05c7d8c204e1c851b6f20a8ac93
       if (task.id === taskId) {
         return { ...task, isCompleted: !task.isCompleted };
       }
@@ -62,7 +50,6 @@ export function App() {
   }
 
   return (
-<<<<<<< HEAD
     <div className="flex justify-center p-6">
       <div className="w-full max-w-3xl space-y-6 rounded-2xl bg-white bg-opacity-70 p-8 shadow-lg backdrop-blur-sm">
         {/* Increased max-width and padding */}
@@ -125,74 +112,6 @@ export function App() {
           deleteTaskItem={deleteTaskItemItem}
           toggleTaskCompleted={toggleTaskCompleted}
         />
-=======
-    <div>
-      <div className="flex justify-center p-5">
-        <div className="w-full max-w-lg space-y-5">
-          <header>
-            <h1 className="text-center text-3xl font-bold text-blue-700 underline">
-              Task Management
-            </h1>
-          </header>
-          <div className="flex justify-between">
-            <form onSubmit={addTaskItem} className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <Label htmlFor="text" className="font-medium">
-                  Description:
-                </Label>
-                <Input
-                  id="text"
-                  name="text"
-                  type="text"
-                  placeholder="Learn something"
-                  required
-                  className="flex-1"
-                />
-              </div>
-              <div className="mt-3 flex items-center space-x-3">
-                <Label htmlFor="date" className="font-medium">
-                  Due Date:
-                </Label>
-                <Input
-                  id="date"
-                  name="date"
-                  type="date"
-                  required
-                  defaultValue={new Date().toISOString().split("T")[0]}
-                  className="flex-1"
-                />
-              </div>
-              <div className="flex gap-2">
-                <button
-                  type="submit"
-                  className="rounded bg-blue-700 text-white"
-                >
-                  Add Task
-                </button>
-                <button
-                  type="button"
-                  onClick={() =>
-                    deleteTaskItem(taskItems[taskItems.length - 1]?.id)
-                  }
-                  className="rounded bg-red-700 text-white"
-                  disabled={taskItems.length === 0}
-                >
-                  Delete Last Task
-                </button>
-                <p className="bg-yellow-100 text-black">
-                  Task: {taskItems.length} items
-                </p>
-              </div>
-            </form>
-          </div>
-
-          <TaskList
-            taskItems={taskItems}
-            deleteTaskItem={deleteTaskItem}
-            toggleTaskCompleted={toggleTaskCompleted}
-          />
-        </div>
->>>>>>> 3ba9fcae5fddb05c7d8c204e1c851b6f20a8ac93
       </div>
     </div>
   );
