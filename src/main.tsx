@@ -16,7 +16,7 @@ createRoot(document.getElementById("root")!).render(
         <Route element={<LayoutRoute />}>
           <Route index path="/" element={<App />} />
           <Route path="/about" element={<AboutRoute />} />
-          {/* <Route path="/tasks" element={<App />} /> */}
+          {/* <Route path="/tasks" element={<TaskRoute />} /> */}
           <Route path="/tasks/:id" element={<TaskRoute />} />
           <Route path="/counter" element={<CounterRoute />} />
           <Route path="/*" element={<NotFoundRoute />} />

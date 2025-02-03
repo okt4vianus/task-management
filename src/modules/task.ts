@@ -18,3 +18,8 @@ export function getTaskItemsStorage() {
 export function setTaskItemsStorage(tasks: TaskType[]) {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
+
+export function getTaskItemById(id: number) {
+  const tasks = getTaskItemsStorage();
+  return tasks.find((task: TaskType) => task.id === id);
+}
