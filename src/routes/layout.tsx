@@ -15,14 +15,7 @@ export function LayoutRoute() {
                 App
               </NavLinkCustom>
             </li>
-            <li>
-              <NavLinkCustom
-                to="/tasks"
-                className="transition-colors hover:text-yellow-300"
-              >
-                Task Detail
-              </NavLinkCustom>
-            </li>
+
             <li>
               <NavLinkCustom
                 to="/counter"
@@ -37,6 +30,14 @@ export function LayoutRoute() {
                 className="transition-colors hover:text-yellow-300"
               >
                 About
+              </NavLinkCustom>
+            </li>
+            <li>
+              <NavLinkCustom
+                to="/404"
+                className="transition-colors hover:text-yellow-300"
+              >
+                404
               </NavLinkCustom>
             </li>
           </ul>
